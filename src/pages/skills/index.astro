@@ -1,11 +1,9 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
-import Hero from "@/components/hero/Hero.astro"
-import SkillCard from "@/components/cards/SkillCard.astro"
+import SkillCard from "@/components/Cards/SkillCard.astro"
 import { getBlogPost } from "@/lib/wagtail.js"
 
-const posts = await getBlogPost();
-const latest = (posts ?? []).slice(0, 3)
+const posts = (await getBlogPost()) ?? []
 ---
 
 <style>
@@ -40,20 +38,19 @@ const latest = (posts ?? []).slice(0, 3)
 }
 </style>
 
-<BasicLayout>
-  <Hero />
 
+<BasicLayout title="Skills">
   <section class="skills">
-    <div class="skills__head">
-      <h2 class="skills__title">Artículos recientes</h2>
-      <hr class="skills__rule" />
-    </div>
+    <header class="skills__intro">
+      <h1 class="skills__h1">Biblioteca de artículos</h1>
+      <p class="skills__lead">Un archivo de ideas, técnicas y reflexiones sobre la intersección entre la curiosidad humana y la capacidad de la IA.</p>
+    </header>
 
-    {latest.length === 0 ? (
-      <p>Aún no hay artículos publicados.</p>
+    {posts.length === 0 ? (
+      <p>Aún no hay skills publicadas.</p>
     ) : (
       <div class="skills__grid">
-        {latest.map((post) => (
+        {posts.map((post) => (
           <SkillCard
             title={post.title}
             intro={post.intro}
@@ -65,4 +62,5 @@ const latest = (posts ?? []).slice(0, 3)
     )}
   </section>
 </BasicLayout>
+
 
