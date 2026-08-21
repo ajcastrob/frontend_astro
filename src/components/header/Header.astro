@@ -1,0 +1,94 @@
+---
+import "@/styles/global.css"
+
+---
+<style>
+.header {
+  background: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width-frame);
+  margin-inline: auto;
+  padding: var(--space-16) var(--space-64);
+  gap: var(--space-24);
+}
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  color: var(--color-text-primary);
+}
+.header__title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-brand);
+  font-weight: 600;
+}
+.header__menu,
+.header__social {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-32);
+}
+.header__link {
+  font-size: var(--font-size-nav);
+  color: var(--color-text-secondary);
+}
+.header__link[aria-current="page"] {
+  color: var(--color-accent);
+  border-bottom: var(--border-width) solid var(--color-accent);
+}
+.header svg {
+  width: 28px;
+  height: 28px;
+  color: var(--color-text-primary);
+}
+</style>
+
+<header class="header">
+  <div class="header__container">
+    <a class="header__brand" class="link" href="">
+      <svg  aria-hidden="true">
+        <use href="/assets/icons/logo.svg#logo"></use>
+      </svg>
+      <span class="header__title">
+        Ashi Labs
+      </span>
+    </a>
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li>
+          <a class="header__link" href="">
+            Home
+          </a>
+        </li>
+        <li>
+          <a class="header__link" href="">
+            Skills
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <ul class="header__social">
+      <li>
+        <a href="" aria-label="Github">
+            <svg  aria-hidden="true">
+              <use href="/assets/icons/social.svg#github"></use>
+            </svg>
+        </a>
+      </li>
+      <li>
+        <a href="" aria-label="Linkedin">
+            <svg  aria-hidden="true">
+              <use href="/assets/icons/social.svg#linkedin"></use>
+            </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
