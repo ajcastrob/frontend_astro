@@ -21,4 +21,19 @@ export const getBlogPost = async () => {
 export const getBlogPostBySlug = async (slug) => {
   const posts = await getBlogPost();
   return posts.find((item) => item.meta.slug === slug) ?? null;
+};
 
+export const imageUrl = (image) => {
+  const path = image?.url;
+  if (!path) return "";
+  if (/^https?:\/\//.test(path)) return path;
+
+  try {
+    const origin = url_base
+      ? new URL(url_base).origin
+      : "http://127.0.0.1:8000";
+    return `${origin}${path}`;
+  } catch {
+    return `http://127.0.0.1:8000${path}`;
+  }
+};

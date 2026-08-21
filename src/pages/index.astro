@@ -2,7 +2,7 @@
 import BasicLayout from "@/layouts/BasicLayout.astro"
 import Hero from "@/components/hero/Hero.astro"
 import SkillCard from "@/components/cards/SkillCard.astro"
-import { getBlogPost } from "@/lib/wagtail.js"
+import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = await getBlogPost();
 const latest = (posts ?? []).slice(0, 3)
@@ -58,7 +58,9 @@ const latest = (posts ?? []).slice(0, 3)
             title={post.title}
             intro={post.intro}
             tags={post.tags}
-            href="#"
+            href={`/skills/${post.meta.slug}`}
+            imageSrc={imageUrl(post.image)}
+            imageAlt={post.image?.title ?? ""}
           />
         ))}
       </div>
