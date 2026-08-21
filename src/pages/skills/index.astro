@@ -1,6 +1,6 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
-import SkillCard from "@/components/Cards/SkillCard.astro"
+import SkillCard from "@/components/cards/SkillCard.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = (await getBlogPost()) ?? []
