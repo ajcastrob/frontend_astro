@@ -1,0 +1,19 @@
+---
+import { formatDate } from "@/lib/format.js";
+
+const { date } = Astro.props;
+---
+<style>
+.date {
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+  margin-top: 5px;
+}
+.date time {
+  font-family: var(--font-ui);
+}
+</style>
+
+<div class="date">
+  {date && <time datetime={date}>{formatDate(date)}</time>}
+</div>
