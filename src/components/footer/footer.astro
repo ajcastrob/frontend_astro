@@ -1,0 +1,43 @@
+---
+import "@/styles/global.css"
+
+const year = new Date().getFullYear();
+---
+<style>
+    .footer {
+  background: var(--color-surface-muted);
+  border-top: var(--border-width) solid var(--color-border);
+}
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width-frame);
+  margin-inline: auto;
+  padding: 48px var(--space-64);
+}
+.footer__title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-brand);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+.footer__copy {
+  margin: 0;
+  color: var(--color-text-tertiary);
+}
+</style>
+
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__brand">
+            <p class="footer__title">
+                Ashi Labs
+            </p>
+            <p class="footer__copy">
+                © {year}- ajcastrob
+            </p>
+        </div>
+    </div>
+</footer>
