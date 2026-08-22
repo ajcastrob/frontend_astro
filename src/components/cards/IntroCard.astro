@@ -1,0 +1,13 @@
+---
+const { intro } = Astro.props
+---
+<style>
+.card__intro {
+  margin: 0 0 var(--space-32);
+  flex: 1;
+  color: var(--color-text-secondary);
+}
+</style>
+
+
+{intro && <p class="card__intro">{intro}</p>}

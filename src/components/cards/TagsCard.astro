@@ -1,0 +1,29 @@
+---
+const { tags } = Astro.props
+---
+<style>
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin: 0 0 var(--space-16);
+  padding: 0;
+}
+.card__tag {
+  padding: var(--space-4) var(--space-8);
+  font-size: 12px;
+  color: var(--color-accent);
+  background: var(--color-surface-muted);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius);
+}
+</style>
+
+{tags.length > 0 && (
+  <ul class="card__tags">
+    {tags.map((tag) => (
+      <li class="card__tag">{tag}</li>
+    ))}
+  </ul>
+)}
+

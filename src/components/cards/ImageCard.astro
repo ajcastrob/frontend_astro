@@ -1,0 +1,19 @@
+---
+const { imageSrc, imageAlt } = Astro.props
+---
+<style>
+.card__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-16);
+}
+</style>
+
+{imageSrc && (
+    <img class="card__img" src={imageSrc} alt={imageAlt} />
+)}
+
+
+

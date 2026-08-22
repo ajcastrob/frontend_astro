@@ -1,7 +1,11 @@
 ---
+import ImageCard from "@/components/cards/ImageCard.astro"
+import TagsCard from "@/components/cards/TagsCard.astro"
+import IntroCard from "@/components/cards/IntroCard.astro"
+import TitleCard from "@/components/cards/TitleCard.astro"
+import LinkCard from "@/components/cards/LinkCard.astro"
 const { title, intro, imageSrc = "", imageAlt= "", tags = [], href } = Astro.props
 ---
-
 <style>
 .card {
   display: flex;
@@ -11,62 +15,13 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href } = Astro.pro
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius);
 }
-.card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  margin: 0 0 var(--space-16);
-  padding: 0;
-}
-.card__tag {
-  padding: var(--space-4) var(--space-8);
-  font-size: 12px;
-  color: var(--color-accent);
-  background: var(--color-surface-muted);
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius);
-}
-.card__title {
-  margin: 0 0 var(--space-16);
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-.card__intro {
-  margin: 0 0 var(--space-32);
-  flex: 1;
-  color: var(--color-text-secondary);
-}
-.card__leer {
-  color: var(--color-accent);
-}
-.card__img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: var(--radius);
-  margin-bottom: var(--space-16);
-}
 </style>
 
-
 <article class="card">
-  {imageSrc && (
-    <img class="card__img" src={imageSrc} alt={imageAlt} />
-  )}
-
-  {tags.length > 0 && (
-    <ul class="card__tags">
-      {tags.map((tag) => (
-        <li class="card__tag">{tag}</li>
-      ))}
-    </ul>
-  )}
-  <h3 class="card__title">
-    <a href={href}>{title}</a>
-  </h3>
-  {intro && <p class="card__intro">{intro}</p>}
-  <a class="card__leer" href={href}>Leer</a>
-
+  <ImageCard imageSrc={ imageSrc } alt={ imageAlt } />
+  <TagsCard tags={ tags } />
+  <TitleCard href={ href } title={ title } />
+  <IntroCard intro={ intro } />
+  <LinkCard href={ href } />
 </article>
 

@@ -1,0 +1,17 @@
+---
+const { href, title } = Astro.props
+---
+
+<style>
+.card__title {
+  margin: 0 0 var(--space-16);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+</style>
+
+<h3 class="card__title">
+    <a href={href}>{title}</a>
+</h3>
+
