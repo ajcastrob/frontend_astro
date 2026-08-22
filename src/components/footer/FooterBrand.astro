@@ -1,0 +1,23 @@
+---
+const { name, year, username } = Astro.props
+---
+<style>
+.footer__title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-brand);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+.footer__copy {
+  margin: 0;
+  color: var(--color-text-tertiary);
+}
+</style>
+
+
+<div class="footer__brand">
+      <p class="footer__title">{name}</p>
+      <p class="footer__copy">© {year} {username}</p>
+</div>
+

@@ -1,7 +1,10 @@
 ---
-import Social from "@/components/social/Social.astro"
+import FooterBrand from "@/components/footer/FooterBrand.astro"
+import FooterSocial from "@/components/footer/FooterSocial.astro"
 
 const year = new Date().getFullYear();
+const name = "Ashi Labs";
+const username = "ajcastrob";
 ---
 <style>
 .footer {
@@ -17,38 +20,11 @@ const year = new Date().getFullYear();
   padding: 48px var(--space-64);
   gap: var(--space-24);
 }
-.footer__title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-brand);
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin: 0;
-}
-.footer__copy {
-  margin: 0;
-  color: var(--color-text-tertiary);
-}
-.footer__social {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  gap: var(--space-24);
-}
-.footer__social a {
-  display: flex;
-  color: var(--color-text-primary);
-  transition: color var(--duration) var(--ease-out);
-}
-.footer__social a:hover {
-  color: var(--color-accent);
-}
 .footer svg {
   width: 28px;
   height: 28px;
   color: currentColor;
 }
-
 @media (max-width: 800px) {
   .footer__container {
     padding-inline: var(--space-16);
@@ -59,17 +35,7 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="footer__container">
-    <div class="footer__brand">
-      <p class="footer__title">Ashi Labs</p>
-      <p class="footer__copy">© {year} ajcastrob</p>
-    </div>
-    <ul class="footer__social">
-      <li>
-        <Social link="https://github.com/ajcastrob" label="Github" icon="/assets/icons/social.svg#github" />
-      </li>
-      <li>
-        <Social link="https://www.linkedin.com/in/jos%C3%A9-castro-b600791a4/" label="Linkedin" icon="/assets/icons/social.svg#linkedin" />
-      </li>
-    </ul>
+    <FooterBrand name={name} year={year} username={username} />
+    <FooterSocial />
   </div>
 </footer>
