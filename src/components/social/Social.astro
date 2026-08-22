@@ -5,7 +5,7 @@ const { link, label, icon } = Astro.props
 a {
   display: flex;
   color: var(--color-text-primary);
-  transition: color var(--duration) var(--ease-out);
+  transition: color var(--duration) var(--ease-out), fill var(--duration) var(--ease-out);
 }
 a:hover {
   color: var(--color-accent);
@@ -13,7 +13,7 @@ a:hover {
 svg {
   width: 28px;
   height: 28px;
-  color: currentColor;
+  fill: currentColor;
 }
 </style>
 
