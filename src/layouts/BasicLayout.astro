@@ -23,15 +23,12 @@ const { title = "Ashi Labs - Blog" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body >
-
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
     <Header />
-
-    <main >
+    <main id="main">
       <slot />
     </main>
-
     <Footer />
-
   </body>
 </html>

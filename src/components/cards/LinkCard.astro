@@ -3,8 +3,24 @@ const { href } = Astro.props
 ---
 <style>
 .card__leer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: fit-content;
+  margin-top: auto;
   color: var(--color-accent);
+  font-weight: 500;
+}
+.card__leer-icon {
+  display: inline-block;
+  transition: transform var(--duration) var(--ease-out);
+}
+.card__leer:hover .card__leer-icon {
+  transform: translateX(4px);
 }
 </style>
 
-<a class="card__leer" href={href}>Leer</a>
+<a class="card__leer" href={href}>
+  Leer
+  <span class="card__leer-icon" aria-hidden="true">→</span>
+</a>

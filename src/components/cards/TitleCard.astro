@@ -8,6 +8,14 @@ const { href, title } = Astro.props
   font-size: 28px;
   font-weight: 600;
   color: var(--color-text-primary);
+  text-wrap: balance;
+  line-height: 1.2;
+}
+.card__title a {
+  transition: color var(--duration) var(--ease-out);
+}
+.card__title a:hover {
+  color: var(--color-accent);
 }
 </style>
 
