@@ -49,6 +49,21 @@ import Social from "@/components/social/Social.astro"
   height: 28px;
   color: var(--color-text-primary);
 }
+
+
+@media (max-width: 800px) {
+  .header__container {
+    padding-inline: var(--space-16);
+    flex-wrap: wrap;
+    gap: var(--space-16);
+  }
+  .header__menu,
+  .header__social {
+    gap: var(--space-16);
+  }
+}
+
+
 </style>
 
 <header class="header">
