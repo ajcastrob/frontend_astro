@@ -109,6 +109,16 @@ const avatar = author?.profile_picture ? imageUrl({ url: author.profile_picture 
   color: var(--color-text-primary);
 }
 
+
+@media (max-width: 800px) {
+  .article {
+    padding: var(--space-64) var(--space-16);
+  }
+  .article__title {
+    font-size: 32px;
+  }
+}
+
 </style>
 
 
