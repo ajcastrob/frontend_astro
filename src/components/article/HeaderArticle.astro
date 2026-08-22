@@ -1,5 +1,8 @@
 ---
 import Date from "@/components/date/Date.astro"
+import TagsArticle from "@/components/article/TagsArticle.astro"
+import AuthorArticle from "@/components/article/AuthorArticle.astro"
+import IntroArticle from "@/components/article/IntroArticle.astro"
 
 const { post, authorName, avatar, author  } = Astro.props
 ---
@@ -7,51 +10,12 @@ const { post, authorName, avatar, author  } = Astro.props
 .article__header {
   margin-bottom: var(--space-64);
 }
-
-.article__intro {
-  margin: 0;
-  font-size: 24px;
-  line-height: 1.4;
-  color: var(--color-text-secondary);
-}
-
-.article__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  margin: 0 0 var(--space-24);
-  padding: 0;
-}
-.article__tag {
-  padding: var(--space-4) var(--space-8);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--color-accent);
-}
 .article__title {
   margin: 0 0 var(--space-24);
   font-family: var(--font-display);
   font-size: var(--font-size-display);
   font-weight: 500;
   line-height: 1.1;
-  color: var(--color-text-primary);
-}
-
-.article__author {
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
-  margin-top: var(--space-32);
-}
-.article__avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.article__author-name {
-  margin: 0;
-  font-weight: 600;
   color: var(--color-text-primary);
 }
 
@@ -63,23 +27,10 @@ const { post, authorName, avatar, author  } = Astro.props
 </style>
 
 <header class="article__header">
-      {post.tags?.length > 0 && (
-        <ul class="article__tags">
-          {post.tags.map((tag) => (
-            <li class="article__tag">{tag}</li>
-          ))}
-        </ul>
-      )}
+      <TagsArticle post={post} />
       <h1 class="article__title">{post.title}</h1>
-      {post.intro && <p class="article__intro">{post.intro}</p>}
-      
+      <IntroArticle post={post} /> 
       <Date date={post.date}/>
-
-      {author && (
-        <div class="article__author">
-          {avatar && <img class="article__avatar" src={avatar} alt="" />}
-          <p class="article__author-name">{authorName}</p>
-        </div>
-      )}
+      <AuthorArticle author={ author } avatar={ avatar } authorName={ authorName } />
 </header>
 

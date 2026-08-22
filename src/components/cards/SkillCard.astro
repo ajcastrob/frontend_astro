@@ -40,8 +40,6 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href } = Astro.pro
 .card__leer {
   color: var(--color-accent);
 }
-
-
 .card__img {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -53,11 +51,9 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href } = Astro.pro
 
 
 <article class="card">
-
   {imageSrc && (
     <img class="card__img" src={imageSrc} alt={imageAlt} />
   )}
-
 
   {tags.length > 0 && (
     <ul class="card__tags">

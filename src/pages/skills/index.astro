@@ -1,12 +1,11 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
-import SkillGrid from "@/components/grid/SkillGrid.astro"
+import Posts from "@/components/posts/Posts.astro"
 import SkillCard from "@/components/cards/SkillCard.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = (await getBlogPost()) ?? []
 ---
-
 <style>
 .skills {
   max-width: var(--max-width-content);
@@ -32,7 +31,6 @@ const posts = (await getBlogPost()) ?? []
 }
 </style>
 
-
 <BasicLayout title="Skills">
   <section class="skills">
     <header class="skills__intro">
@@ -40,11 +38,8 @@ const posts = (await getBlogPost()) ?? []
       <p class="skills__lead">Un archivo de ideas, técnicas y reflexiones sobre la intersección entre la curiosidad humana y la capacidad de la IA.</p>
     </header>
 
-    {posts.length === 0 ? (
-      <p>Aún no hay skills publicadas.</p>
-    ) : (
-      <SkillGrid posts={ posts } imageUrl={ imageUrl }/>
-    )}
+    <Posts posts={ posts } imageUrl={ imageUrl } />
+
   </section>
 </BasicLayout>
 

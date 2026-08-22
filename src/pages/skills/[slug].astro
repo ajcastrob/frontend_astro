@@ -21,7 +21,6 @@ const author = post.owner
 const authorName = [author?.first_name, author?.last_name].filter(Boolean).join(" ") || author?.username || ""
 const avatar = author?.profile_picture ? imageUrl({ url: author.profile_picture }) : ""
 ---
-
 <style>
 .article {
   max-width: var(--max-width-hero);
@@ -34,7 +33,6 @@ const avatar = author?.profile_picture ? imageUrl({ url: author.profile_picture 
   }
 }
 </style>
-
 
 <BasicLayout title={post.title}>
   <article class="article"> 

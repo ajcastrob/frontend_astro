@@ -1,0 +1,31 @@
+---
+const { author, avatar, authorName } = Astro.props
+---
+<style>
+.article__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: var(--space-32);
+}
+.article__avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.article__author-name {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+</style>
+
+
+{author && (
+  <div class="article__author">
+    {avatar && <img class="article__avatar" src={avatar} alt="" />}
+    <p class="article__author-name">{authorName}</p>
+  </div>
+)}
+

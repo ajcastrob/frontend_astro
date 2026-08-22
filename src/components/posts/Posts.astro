@@ -1,0 +1,12 @@
+---
+import SkillGrid from "@/components/grid/SkillGrid.astro"
+
+const { posts, imageUrl } = Astro.props
+---
+
+{posts.length === 0 ? (
+      <p>Aún no hay skills publicadas.</p>
+    ) : (
+      <SkillGrid posts={ posts } imageUrl={ imageUrl }/>
+)}
+
