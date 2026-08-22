@@ -1,0 +1,186 @@
+---
+import BasicLayout from "@/layouts/BasicLayout.astro"
+---
+
+<style>
+.notfound {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: var(--space-64);
+  max-width: min(var(--max-width-content), 100%);
+  margin-inline: auto;
+  padding: var(--space-64);
+  min-height: calc(100dvh - 14rem);
+  min-width: 0;
+}
+
+.notfound__visual {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.notfound__mark {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(6.5rem, 22vw, 13rem);
+  font-weight: 500;
+  line-height: 0.82;
+  letter-spacing: -0.07em;
+  color: var(--color-text-primary);
+  user-select: none;
+}
+
+.notfound__digit:nth-child(2) {
+  margin-top: 0.14em;
+  padding-bottom: 0.08em;
+  font-style: italic;
+  font-weight: inherit;
+  color: var(--color-accent);
+}
+
+.notfound__digit:nth-child(3) {
+  margin-top: -0.04em;
+}
+
+.notfound__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 28rem;
+  min-width: 0;
+}
+
+.notfound__title {
+  margin: 0 0 var(--space-16);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, var(--font-size-h2));
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.notfound__lead {
+  margin: 0 0 var(--space-32);
+  font-size: var(--font-size-subtitle);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  text-wrap: pretty;
+}
+
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-24);
+  border-radius: var(--radius);
+  border: var(--border-width) solid transparent;
+  font-family: var(--font-ui);
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background: color-mix(in srgb, var(--color-accent) 86%, var(--color-text-primary));
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.btn--ghost:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .notfound__digit {
+    animation: notfound-in 720ms var(--ease-out) both;
+    animation-delay: calc(var(--i) * 90ms);
+  }
+
+  .notfound__copy {
+    animation: notfound-in 720ms var(--ease-out) both;
+    animation-delay: 220ms;
+  }
+}
+
+@keyframes notfound-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .notfound {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+    padding: var(--space-64) var(--space-16);
+    min-height: auto;
+  }
+
+  .notfound__mark {
+    font-size: clamp(5.5rem, 32vw, 8rem);
+  }
+
+  .notfound__copy {
+    max-width: none;
+  }
+}
+</style>
+
+<BasicLayout title="Página no encontrada - Ashi Labs">
+  <section class="notfound" aria-labelledby="notfound-title">
+    <div class="notfound__visual">
+      <p class="notfound__mark" aria-hidden="true">
+        <span class="notfound__digit" style="--i: 0">4</span>
+        <span class="notfound__digit" style="--i: 1">0</span>
+        <span class="notfound__digit" style="--i: 2">4</span>
+      </p>
+    </div>
+
+    <div class="notfound__copy">
+      <h1 id="notfound-title" class="notfound__title">Esta página no está aquí</h1>
+      <p class="notfound__lead">
+        La dirección no coincide con ningún artículo.
+      </p>
+      <div class="notfound__actions">
+        <a class="btn btn--primary" href="/">Volver al inicio</a>
+        <a class="btn btn--ghost" href="/skills/">Ver skills</a>
+      </div>
+    </div>
+  </section>
+</BasicLayout>
