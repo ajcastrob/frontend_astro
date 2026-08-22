@@ -1,0 +1,19 @@
+---
+
+const { link, label, icon } = Astro.props
+
+---
+<style>
+svg {
+  width: 28px;
+  height: 28px;
+  color: var(--color-text-primary);
+}
+</style>
+
+<a href={link} aria-label={label} target="_blank">
+    <svg  aria-hidden="true">
+      <use href={icon}></use>
+    </svg>
+</a>
+
