@@ -1,0 +1,23 @@
+---
+const { post } = Astro.props
+---
+<style>
+.article__repo {
+  margin-top: var(--space-64);
+  padding-top: var(--space-32);
+  border-top: var(--border-width) solid var(--color-border);
+}
+.article__repo a {
+  color: var(--color-accent);
+}
+</style>
+
+
+{post.repo_url && (
+  <p class="article__repo">
+    <a href={post.repo_url} rel="noopener noreferrer" target="_blank">
+      Ver repositorio
+    </a>
+  </p>
+)}
+

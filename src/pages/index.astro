@@ -1,6 +1,7 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
 import Hero from "@/components/hero/Hero.astro"
+import SkillGrid from "@/components/grid/SkillGrid.astro"
 import SkillCard from "@/components/cards/SkillCard.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
@@ -33,25 +34,14 @@ const latest = (posts ?? []).slice(0, 3)
   background: var(--color-border);
   border: 0;
 }
-.skills__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-24);
-}
-
 
 @media (max-width: 800px) {
-  .skills__grid {
-    grid-template-columns: 1fr;
-  }
   .skills { padding-inline: var(--space-16); }
 }
-
 </style>
 
 <BasicLayout>
   <Hero />
-
   <section class="skills">
     <div class="skills__head">
       <h2 class="skills__title">Artículos recientes</h2>
@@ -61,19 +51,8 @@ const latest = (posts ?? []).slice(0, 3)
     {latest.length === 0 ? (
       <p>Aún no hay artículos publicados.</p>
     ) : (
-      <div class="skills__grid">
-        {latest.map((post) => (
-          <SkillCard
-            title={post.title}
-            intro={post.intro}
-            tags={post.tags}
-            href={`/skills/${post.meta.slug}`}
-            imageSrc={imageUrl(post.image)}
-            imageAlt={post.image?.title ?? ""}
-          />
-        ))}
-      </div>
-    )}
+      <SkillGrid posts={ latest } imageUrl={ imageUrl }/>
+        )}
   </section>
 </BasicLayout>
 

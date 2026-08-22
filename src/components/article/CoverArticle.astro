@@ -1,0 +1,35 @@
+---
+
+const { cover, post } = Astro.props
+
+---
+<style>
+.article__figure {
+  margin: 0 0 var(--space-64);
+}
+.article__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+}
+.article__caption {
+  margin-top: var(--space-16);
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+</style>
+
+{cover && (
+  <figure class="article__figure">
+    <img
+      class="article__img"
+      src={cover}
+      alt={post.image?.title ?? ""}
+    />
+    {post.caption && (
+      <figcaption class="article__caption">{post.caption}</figcaption>
+    )}
+  </figure>
+)}
+

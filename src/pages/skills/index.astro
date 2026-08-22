@@ -1,5 +1,6 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
+import SkillGrid from "@/components/grid/SkillGrid.astro"
 import SkillCard from "@/components/cards/SkillCard.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
@@ -25,25 +26,10 @@ const posts = (await getBlogPost()) ?? []
   color: var(--color-text-primary);
   white-space: nowrap;
 }
-.skills__rule {
-  flex: 1;
-  height: var(--border-width);
-  background: var(--color-border);
-  border: 0;
-}
-.skills__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-24);
-}
 
 @media (max-width: 800px) {
-  .skills__grid {
-    grid-template-columns: 1fr;
-  }
   .skills { padding-inline: var(--space-16); }
 }
-
 </style>
 
 
@@ -57,19 +43,7 @@ const posts = (await getBlogPost()) ?? []
     {posts.length === 0 ? (
       <p>Aún no hay skills publicadas.</p>
     ) : (
-      <div class="skills__grid">
-        {posts.map((post) => (
-          <SkillCard
-            title={post.title}
-            intro={post.intro}
-            tags={post.tags}
-            href={`/skills/${post.meta.slug}`}
-            imageSrc={imageUrl(post.image)}
-            imageAlt={post.image?.title ?? ""}
-
-          />
-        ))}
-      </div>
+      <SkillGrid posts={ posts } imageUrl={ imageUrl }/>
     )}
   </section>
 </BasicLayout>
