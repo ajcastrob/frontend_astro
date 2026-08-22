@@ -1,0 +1,40 @@
+---
+import Social from "@/components/social/Social.astro"
+---
+<style>
+.header__social {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-32);
+}
+.header svg {
+  width: 28px;
+  height: 28px;
+  color: currentColor;
+}
+.header__social a {
+  display: flex;
+  color: var(--color-text-primary);
+  transition: color var(--duration) var(--ease-out);
+}
+.header__social a:hover {
+  color: var(--color-accent);
+}
+@media (max-width: 800px) {
+  .header__social {
+    display: none;
+  }
+}
+</style>
+
+<ul class="header__social">
+  <li>
+    <Social link="https://github.com/ajcastrob" label="Github" icon="/assets/icons/social.svg#github" />
+  </li>
+  <li>
+    <Social link="https://www.linkedin.com/in/jos%C3%A9-castro-b600791a4/" label="Linkedin" icon="/assets/icons/social.svg#linkedin" />
+  </li>
+</ul>
+

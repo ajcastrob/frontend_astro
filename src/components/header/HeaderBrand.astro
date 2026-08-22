@@ -1,0 +1,32 @@
+---
+const { linkLogo, nameBrand } = Astro.props
+---
+<style>
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  color: var(--color-text-primary);
+}
+.header__title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-brand);
+  font-weight: 600;
+}
+svg {
+  width: 28px;
+  height: 28px;
+  color: currentColor;
+}
+</style>
+
+
+<a class="header__brand" href="/">
+    <svg aria-hidden="true">
+      <use href={ linkLogo }></use>
+    </svg>
+    <span class="header__title">
+      {nameBrand} 
+    </span>
+</a>
+

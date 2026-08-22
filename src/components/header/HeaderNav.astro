@@ -1,0 +1,60 @@
+---
+const { isHome, isSkills } = Astro.props
+---
+<style>
+.header__menu{
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-32);
+}
+.header__link {
+  position: relative;
+  padding-bottom: 4px;
+  font-size: var(--font-size-nav);
+  color: var(--color-text-secondary);
+  transition: color var(--duration) var(--ease-out);
+}
+.header__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration) var(--ease-out);
+}
+.header__link:hover,
+.header__link[aria-current="page"] {
+  color: var(--color-accent);
+}
+.header__link:hover::after,
+.header__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 800px) {
+  .header__menu {
+    gap: var(--space-16);
+  }
+}
+</style>
+
+<nav class="header__nav">
+  <ul class="header__menu">
+    <li>
+      <a class="header__link" href="/" aria-current={isHome ? "page" : undefined}>
+        Home
+      </a>
+    </li>
+    <li>
+      <a class="header__link" href="/skills/" aria-current={isSkills ? "page" : undefined}>
+        Skills
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -1,9 +1,13 @@
 ---
-import Social from "@/components/social/Social.astro"
+import HeaderNav from "@/components/header/HeaderNav.astro"
+import HeaderBrand from "@/components/header/HeaderBrand.astro"
+import HeaderSocial from "@/components/header/HeaderSocial.astro"
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/"
 const isHome = path === "/"
 const isSkills = path === "/skills" || path.startsWith("/skills/")
+const linkLogo = "/assets/icons/logo.svg#logo" 
+const nameBrand = "Ashi Labs"
 ---
 <style>
 .header {
@@ -26,65 +30,7 @@ const isSkills = path === "/skills" || path.startsWith("/skills/")
   gap: var(--space-24);
   min-width: 0;
 }
-.header__brand {
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
-  color: var(--color-text-primary);
-}
-.header__title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-brand);
-  font-weight: 600;
-}
-.header__menu,
-.header__social {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  gap: var(--space-32);
-}
-.header__link {
-  position: relative;
-  padding-bottom: 4px;
-  font-size: var(--font-size-nav);
-  color: var(--color-text-secondary);
-  transition: color var(--duration) var(--ease-out);
-}
-.header__link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--duration) var(--ease-out);
-}
-.header__link:hover,
-.header__link[aria-current="page"] {
-  color: var(--color-accent);
-}
-.header__link:hover::after,
-.header__link[aria-current="page"]::after {
-  transform: scaleX(1);
-}
-.header svg {
-  width: 28px;
-  height: 28px;
-  color: currentColor;
-}
-.header__social a {
-  display: flex;
-  color: var(--color-text-primary);
-  transition: color var(--duration) var(--ease-out);
-}
-.header__social a:hover {
-  color: var(--color-accent);
-}
+
 
 @media (max-width: 800px) {
   .header__container {
@@ -93,46 +39,13 @@ const isSkills = path === "/skills" || path.startsWith("/skills/")
     gap: var(--space-16);
     min-width: 0;
   }
-  .header__menu {
-    gap: var(--space-16);
-  }
-  .header__social {
-    display: none;
-  }
 }
 </style>
 
 <header class="header">
   <div class="header__container">
-    <a class="header__brand" href="/">
-      <svg aria-hidden="true">
-        <use href="/assets/icons/logo.svg#logo"></use>
-      </svg>
-      <span class="header__title">
-        Ashi Labs
-      </span>
-    </a>
-    <nav class="header__nav">
-      <ul class="header__menu">
-        <li>
-          <a class="header__link" href="/" aria-current={isHome ? "page" : undefined}>
-            Home
-          </a>
-        </li>
-        <li>
-          <a class="header__link" href="/skills/" aria-current={isSkills ? "page" : undefined}>
-            Skills
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <ul class="header__social">
-      <li>
-        <Social link="https://github.com/ajcastrob" label="Github" icon="/assets/icons/social.svg#github" />
-      </li>
-      <li>
-        <Social link="https://www.linkedin.com/in/jos%C3%A9-castro-b600791a4/" label="Linkedin" icon="/assets/icons/social.svg#linkedin" />
-      </li>
-    </ul>
+    <HeaderBrand linkLogo={ linkLogo } nameBrand={ nameBrand } />
+    <HeaderNav isHome={ isHome } isSkills={isSkills} />
+    <HeaderSocial />
   </div>
 </header>
