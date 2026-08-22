@@ -23,9 +23,10 @@ const avatar = author?.profile_picture ? imageUrl({ url: author.profile_picture 
 ---
 <style>
 .article {
-  max-width: var(--max-width-hero);
+  max-width: min(var(--max-width-hero), 100%);
   margin-inline: auto;
   padding: 96px var(--space-64);
+  min-width: 0;
 }
 @media (max-width: 800px) {
   .article {

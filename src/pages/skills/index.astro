@@ -1,29 +1,37 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
 import Posts from "@/components/posts/Posts.astro"
-import SkillCard from "@/components/cards/SkillCard.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = (await getBlogPost()) ?? []
 ---
 <style>
 .skills {
-  max-width: var(--max-width-content);
+  max-width: min(var(--max-width-content), 100%);
   margin-inline: auto;
-  padding: 0 var(--space-64) var(--space-128);
+  padding: var(--space-64) var(--space-64) var(--space-128);
+  min-width: 0;
 }
-.skills__head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
+.skills__intro {
+  max-width: 40rem;
   margin-bottom: var(--space-64);
+  min-width: 0;
 }
-.skills__title {
-  margin: 0;
+.skills__h1 {
+  margin: 0 0 var(--space-16);
+  font-family: var(--font-display);
   font-size: var(--font-size-h2);
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 1.15;
   color: var(--color-text-primary);
-  white-space: nowrap;
+  text-wrap: balance;
+}
+.skills__lead {
+  margin: 0;
+  font-size: var(--font-size-nav);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 800px) {

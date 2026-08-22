@@ -13,15 +13,17 @@ const { post, authorName, avatar, author  } = Astro.props
 .article__title {
   margin: 0 0 var(--space-24);
   font-family: var(--font-display);
-  font-size: var(--font-size-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--color-text-primary);
+  overflow-wrap: break-word;
 }
 
-@media (max-width: 800px) {
+@media (min-width: 801px) {
   .article__title {
-    font-size: 32px;
+    text-wrap: balance;
   }
 }
 </style>

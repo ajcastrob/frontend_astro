@@ -4,21 +4,48 @@ import TagsCard from "@/components/cards/TagsCard.astro"
 import IntroCard from "@/components/cards/IntroCard.astro"
 import TitleCard from "@/components/cards/TitleCard.astro"
 import LinkCard from "@/components/cards/LinkCard.astro"
-const { title, intro, imageSrc = "", imageAlt= "", tags = [], href } = Astro.props
+const { title, intro, imageSrc = "", imageAlt= "", tags = [], href, featured = false } = Astro.props
 ---
 <style>
 .card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   padding: var(--space-24);
   background: var(--color-surface);
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius);
+  transition:
+    border-color var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+.card:hover {
+  border-color: var(--color-accent);
+}
+.card:hover :global(.card__img) {
+  transform: scale(1.03);
+}
+.card:hover :global(.card__leer-icon) {
+  transform: translateX(4px);
+}
+.card--featured :global(.card__title) {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  .card:active {
+    transform: scale(0.98);
+  }
 }
 </style>
 
-<article class="card">
-  <ImageCard imageSrc={ imageSrc } alt={ imageAlt } />
+<article class:list={["card", featured && "card--featured"]}>
+  <ImageCard imageSrc={ imageSrc } imageAlt={ imageAlt } />
   <TagsCard tags={ tags } />
   <TitleCard href={ href } title={ title } />
   <IntroCard intro={ intro } />

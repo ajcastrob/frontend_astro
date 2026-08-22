@@ -1,35 +1,56 @@
 ---
 import SkillCard from "@/components/cards/SkillCard.astro"
 
-const { posts, imageUrl } = Astro.props
-
+const { posts, imageUrl, featured = false } = Astro.props
 ---
 <style>
 .skills__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-24);
+  min-width: 0;
+}
+.skills__grid > :global(*) {
+  min-width: 0;
+}
+.skills__grid--featured {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+.skills__grid--featured > :global(:only-child) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 1100px) {
+  .skills__grid--featured {
+    grid-template-columns: 1fr 1fr;
+  }
+  .skills__grid--featured > :global(:first-child) {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 800px) {
-  .skills__grid {
+  .skills__grid,
+  .skills__grid--featured {
     grid-template-columns: 1fr;
+  }
+  .skills__grid--featured > :global(:first-child) {
+    grid-column: auto;
   }
 }
 </style>
 
-
-<div class="skills__grid">
-        {posts.map((post) => (
-          <SkillCard
-            title={post.title}
-            intro={post.intro}
-            tags={post.tags}
-            href={`/skills/${post.meta.slug}`}
-            imageSrc={imageUrl(post.image)}
-            imageAlt={post.image?.title ?? ""}
-
-          />
-        ))}
+<div class:list={["skills__grid", featured && "skills__grid--featured"]}>
+  {posts.map((post, index) => (
+    <SkillCard
+      title={post.title}
+      intro={post.intro}
+      tags={post.tags}
+      href={`/skills/${post.meta.slug}`}
+      imageSrc={imageUrl(post.image)}
+      imageAlt={post.image?.title ?? ""}
+      featured={featured && index === 0}
+    />
+  ))}
 </div>
 

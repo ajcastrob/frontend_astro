@@ -9,6 +9,10 @@ const { post } = Astro.props
 }
 .article__repo a {
   color: var(--color-accent);
+  transition: color var(--duration) var(--ease-out);
+}
+.article__repo a:hover {
+  color: var(--color-text-primary);
 }
 </style>
 
