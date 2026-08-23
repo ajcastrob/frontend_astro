@@ -1,6 +1,7 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
 import Posts from "@/components/posts/Posts.astro"
+import Search from "@/components/search/Search.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = (await getBlogPost()) ?? []
@@ -34,6 +35,12 @@ const posts = (await getBlogPost()) ?? []
   overflow-wrap: break-word;
 }
 
+.skills_search-container{
+  display: flex; 
+  justify-content: center;
+  width: 100%;
+}
+
 @media (max-width: 800px) {
   .skills { padding-inline: var(--space-16); }
 }
@@ -45,6 +52,10 @@ const posts = (await getBlogPost()) ?? []
       <h1 class="skills__h1">Biblioteca de artículos</h1>
       <p class="skills__lead">Un archivo de ideas, técnicas y reflexiones sobre la intersección entre la curiosidad humana y la capacidad de la IA.</p>
     </header>
+    
+    <div class="skills_search-container">
+      <Search />
+    </div>
 
     <Posts posts={ posts } imageUrl={ imageUrl } />
 

@@ -19,6 +19,7 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href, featured = f
     border-color var(--duration) var(--ease-out),
     transform var(--duration) var(--ease-out);
 }
+
 .card:hover {
   border-color: var(--color-accent);
 }
@@ -27,6 +28,10 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href, featured = f
 }
 .card:hover :global(.card__leer-icon) {
   transform: translateX(4px);
+}
+
+.card[hidden] {
+  display: none;
 }
 .card--featured :global(.card__title) {
   font-family: var(--font-display);
