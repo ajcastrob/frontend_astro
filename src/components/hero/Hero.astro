@@ -1,39 +1,76 @@
 ---
+import HeroImage from "@/components/hero/HeroImage.astro"
 ---
 
 <style>
 .hero {
-  max-width: min(var(--max-width-hero), 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: var(--space-64);
+  width: 100%;
+  max-width: min(var(--max-width-content), 100%);
   margin-inline: auto;
-  padding: var(--space-128) var(--space-64) var(--space-64);
-  text-align: center;
+  padding: var(--space-64);
   min-width: 0;
 }
+
+.hero > :global(*) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  max-width: 32rem;
+  min-width: 0;
+}
+
 .hero__title {
+  margin: 0 0 var(--space-16);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(1.75rem, 3.2vw, var(--font-size-h2));
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
-  margin: 0 0 var(--space-32);
-  width: 100%;
   overflow-wrap: break-word;
 }
+
 .hero__title em {
   font-style: italic;
   font-weight: inherit;
+  color: var(--color-accent);
 }
+
 .hero__lead {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   font-size: var(--font-size-subtitle);
   line-height: 1.7;
   color: var(--color-text-secondary);
+  overflow-wrap: break-word;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero {
-    animation: hero-in 700ms var(--ease-out) both;
+  .hero :global(.hero__media),
+  .hero__title,
+  .hero__lead {
+    animation: hero-in 720ms var(--ease-out) both;
+  }
+
+  .hero__title {
+    animation-delay: 90ms;
+  }
+
+  .hero__lead {
+    animation-delay: 180ms;
   }
 }
 
@@ -56,16 +93,29 @@
 
 @media (max-width: 800px) {
   .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
     padding: var(--space-64) var(--space-16);
+  }
+
+  .hero__copy {
+    max-width: 100%;
+  }
+
+  .hero__title {
+    font-size: 1.5rem;
   }
 }
 </style>
 
 <section class="hero">
-  <h1 class="hero__title">
-    Dominando skills de IA: Del prompt a la <em>automatización</em>
-  </h1>
-  <p class="hero__lead">
-    Un espacio para explorar herramientas de IA. Sin mucha prisa, a pasos con el desarrollo.
-  </p>
+  <div class="hero__copy">
+    <h1 class="hero__title">
+      Dominando skills de IA: Del prompt a la <em>automatización</em>
+    </h1>
+    <p class="hero__lead">
+      Un espacio para explorar herramientas de IA. Sin mucha prisa, a pasos con el desarrollo.
+    </p>
+  </div>
+  <HeroImage />
 </section>

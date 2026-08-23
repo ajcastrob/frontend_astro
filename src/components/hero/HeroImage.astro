@@ -1,0 +1,43 @@
+---
+const {
+  src = "/hero_head.png",
+  alt = "Círculo de lentes superpuestas sobre fondo negro",
+} = Astro.props
+---
+
+<style>
+.hero__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.hero__img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 70%;
+  max-height: 26rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media (max-width: 800px) {
+  .hero__img {
+    max-height: 16rem;
+  }
+}
+</style>
+
+<div class="hero__media">
+  <img
+    class="hero__img"
+    src={src}
+    alt={alt}
+    width="1600"
+    height="1600"
+    fetchpriority="high"
+  />
+</div>
