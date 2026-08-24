@@ -2,7 +2,6 @@
 interface Props {
   title?: string
   description?: string
-  linklogo?: string
 }
 
 const {
@@ -11,7 +10,6 @@ const {
                 prueba y documenta las herramientas de IA que merecen tu tiempo.
                 Cada skill es un paso — como la palabra Ashi, cuyo signficado es dar pasos 
                 silenciosos pero certeros.`,
-  linkLogo = "/assets/icons/logo.svg#logo" ,
 } = Astro.props
 ---
 
@@ -38,6 +36,11 @@ const {
   height: 80px;
   display: flex;
   margin-inline: auto;
+}
+
+.section__logo svg {
+  width: 100%;
+  height: 100%;
 }
 
 .section__title {
@@ -79,8 +82,8 @@ const {
 <section class="section">
   <div class="section__inner">
     <div class="section__logo">
-      <svg aria-hidden="true">
-        <use href={ linkLogo }></use>
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <path fill="currentColor" fill-rule="evenodd" d="M100 24a76 76 0 1 1 0 152 76 76 0 1 1 0-152m15.51 37.61-1.45 32.42 24.33 21.48-32.42-1.45-21.48 24.33 1.45-32.42-24.33-21.48 32.42 1.45zM100 93.7a6.3 6.3 0 1 1 0 12.6 6.3 6.3 0 1 1 0-12.6"/>
       </svg>
     </div>
     <h2 class="section__title">{title}</h2>
