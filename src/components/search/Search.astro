@@ -1,16 +1,28 @@
 ---
+const searchIcon = "/assets/icons/section.svg#search"
 ---
-
 <style>
 .search {
+  position: relative;
+  display: flex;
   width: 100%;
   max-width: 40rem;
   margin: 0 0 var(--space-64);
   min-width: 0;
 }
+.search__icon {
+  position: absolute;
+  left: var(--space-16);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  color: var(--color-text-tertiary);
+}
 .search__input {
   width: 100%;
-  padding: var(--space-16);
+  padding: var(--space-16) var(--space-16) var(--space-16) calc(var(--space-16) + 18px + var(--space-8));
   font: inherit;
   color: var(--color-text-primary);
   background: var(--color-surface);
@@ -31,12 +43,15 @@
 </style>
 
 <div class="search">
+  <svg class="search__icon" aria-hidden="true">
+    <use href={ searchIcon }></use>
+  </svg>
   <input
     class="search__input"
     id="search-title"
     type="search"
     name="q"
-    placeholder="Buscar "
+    placeholder="Buscar..."
     autocomplete="off"
   />
 </div>
@@ -53,5 +68,3 @@
     })
   })
 </script>
-
-
