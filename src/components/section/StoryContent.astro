@@ -1,0 +1,71 @@
+---
+
+---
+<style>
+.story__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .story__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--font-size-h2);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .story__accent {
+    width: 48px;
+    height: 4px;
+    background: var(--color-accent);
+    border: none;
+    margin: var(--space-8) 0;
+  }
+
+  .story__text {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .story__text span {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+@media (max-width: 800px) {
+    .story__title {
+      font-size: 1.75rem;
+    }
+    .story__text {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<div class="story__content">
+    <h2 class="story__title">Detrás del proyecto</h2>
+    <hr class="story__accent" aria-hidden="true" />
+    <p class="story__text">
+      El proyecto comenzó como un viaje personal para entender cómo trabjar con la Inteligencia Artificial (IA) en estos días tan acelerados.
+      Se buscó herramientas que realmente añadieran valor, no solo velocidad.
+      Y ese objetivo se transformó en este blog, que busca ser una especie de laboratorio digital. 
+    </p>
+    <p class="story__text">
+      Desde un principio, hubo algo que movió al proyecto.
+    </p>
+    <p class="story__text">
+      En verdad, la habilidad no radica en saber qué skills 
+      son las mejores, sino en qué preguntas hay que hacer.         
+    </p>
+    <p class="story__text">
+      <span>Ashi Labs</span> nació para documentar ese viaje y compartir las metodologías adecuadas para uso diario.
+    </p>
+</div>
+

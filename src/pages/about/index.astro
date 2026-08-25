@@ -1,39 +1,11 @@
 ---
 import BasicLayout from "@/layouts/BasicLayout.astro"
 import PilaresSection from "@/components/section/PilaresSection.astro"
+import AboutHero from "@/components/section/AboutHero.astro"
+import StoryContent from "@/components/section/StoryContent.astro"
 ---
 
-<style>
-  .about-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-24);
-    padding: var(--space-128) var(--space-64);
-    text-align: center;
-  }
-
-  .about-hero__title {
-    margin: 0;
-    max-width: 896px;
-    font-family: var(--font-display);
-    font-size: var(--font-size-display);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.96px;
-    color: var(--color-text-primary);
-  }
-
-  .about-hero__desc {
-    margin: 0;
-    max-width: 672px;
-    font-family: var(--font-ui);
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-  }
-
+<style> 
   .story {
     background-color: var(--color-surface-muted);
     padding: var(--space-128) var(--space-64);
@@ -46,44 +18,7 @@ import PilaresSection from "@/components/section/PilaresSection.astro"
     max-width: var(--max-width-content);
     margin-inline: auto;
   }
-
-  .story__content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-16);
-  }
-
-  .story__title {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: var(--font-size-h2);
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
-
-  .story__accent {
-    width: 48px;
-    height: 4px;
-    background: var(--color-accent);
-    border: none;
-    margin: var(--space-8) 0;
-  }
-
-  .story__text {
-    margin: 0;
-    font-family: var(--font-ui);
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-  }
-
-  .story__text span {
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-
+ 
   .story__image-wrapper {
     flex: 1;
   }
@@ -98,70 +33,27 @@ import PilaresSection from "@/components/section/PilaresSection.astro"
   }
 
   @media (max-width: 800px) {
-    .about-hero {
-      padding: var(--space-64) var(--space-16);
-    }
-    .about-hero__title {
-      font-size: 2.5rem;
-    }
-    .about-hero__desc {
-      font-size: 16px;
-    }
     .story {
       padding: var(--space-64) var(--space-16);
     }
+
     .story__container {
       flex-direction: column;
       gap: var(--space-32);
-    }
-    .story__title {
-      font-size: 1.75rem;
-    }
-    .story__text {
-      font-size: 16px;
     }
   }
 </style>
 
 <BasicLayout title="Sobre Ashi Labs">
-  <section class="about-hero">
-    <h1 class="about-hero__title">Explorando la Tecnología</h1>
-    <p class="about-hero__desc">
-      La intuición humana se encuentra con la inteligencia artificial.
-      Entender cómo las herramientas digitales pueden amplificar nuestro potencial
-      en lugar de reemplazarlo, buscando siempre un equilibrio reflexivo en la
-      era de la automatización.
-    </p>
-  </section>
-
+  <AboutHero /> 
   <section class="story">
     <div class="story__container">
-      <div class="story__content">
-        <h2 class="story__title">Detrás del proyecto</h2>
-        <hr class="story__accent" aria-hidden="true" />
-        <p class="story__text">
-          El proyecto comenzó como un viaje personal para entender cómo trabjar con la Inteligencia Artificial (IA) en estos días tan acelerados.
-          Se buscó herramientas que realmente añadieran valor, no solo velocidad.
-          Y ese objetivo se transformó en este blog, que busca ser una especie de laboratorio digital. 
-        </p>
-        <p class="story__text">
-          Desde un principio, hubo algo que movió al proyecto.
-        </p>
-        <p class="story__text">
-          En verdad, la habilidad no radica en saber qué skills 
-          son las mejores, sino en qué preguntas hay que hacer.         
-        </p>
-        <p class="story__text">
-          <span>Ashi Labs</span> nació para documentar ese viaje y compartir las metodologías adecuadas para uso diario.
-        </p>
-
-      </div>
+      <StoryContent /> 
       <div class="story__image-wrapper">
         <img class="story__image" src="/laptop.webp" alt="Escritorio con laptop" />
       </div>
     </div>
   </section>
-
   <PilaresSection />
 </BasicLayout>
 
