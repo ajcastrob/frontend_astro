@@ -6,6 +6,7 @@ import HeaderSocial from "@/components/header/HeaderSocial.astro"
 const path = Astro.url.pathname.replace(/\/$/, "") || "/"
 const isHome = path === "/"
 const isSkills = path === "/skills" || path.startsWith("/skills/")
+const isAbout = path === "/about" || path.startsWith("/about/")
 const linkLogo = "/assets/icons/logo.svg#logo" 
 const nameBrand = "Ashi Labs"
 ---
@@ -43,7 +44,7 @@ const nameBrand = "Ashi Labs"
 <header class="header">
   <div class="header__container">
     <HeaderBrand linkLogo={ linkLogo } nameBrand={ nameBrand } />
-    <HeaderNav isHome={ isHome } isSkills={isSkills} />
+    <HeaderNav isHome={ isHome } isSkills={isSkills} isAbout={isAbout} />
     <HeaderSocial />
   </div>
 </header>

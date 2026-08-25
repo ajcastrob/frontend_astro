@@ -1,0 +1,131 @@
+---
+interface Props {
+  title?: string
+  subtitle?: string
+  items?: Array<{ icon: string; title: string; description: string }>
+}
+
+const {
+  title = "Nuestros Pilares",
+  subtitle = "Los principios que guían nuestra exploración y metodología de trabajo.",
+  items = [
+    {
+      icon: "/assets/icons/about.svg#brujula",
+      title: "Curiosidad",
+      description: "Fomentamos una exploración activa y deliberada. No adoptamos herramientas por moda, sino por su utilidad real y su capacidad para expandir nuestras capacidades.",
+    },
+    {
+      icon: "/assets/icons/about.svg#balanza",
+      title: "Ética",
+      description: "Analizamos el impacto de las herramientas que utilizamos. Abogamos por un uso responsable que priorice la transparencia, la equidad y el bienestar a largo plazo.",
+    },
+    {
+      icon: "/assets/icons/about.svg#flor",
+      title: "Diseño",
+      description: "Rechazamos la sobrecarga sensorial. Creemos en interfaces limpias que respeten la atención del usuario.",
+    },
+  ],
+} = Astro.props
+---
+
+<style>
+.pilares {
+  background-color: var(--color-white);
+  padding: var(--space-128) var(--space-64);
+}
+
+.pilares__header {
+  text-align: center;
+  margin-bottom: var(--space-64);
+}
+
+.pilares__title {
+  margin: 0 0 var(--space-16) 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.pilares__subtitle {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.pilares__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-32);
+  max-width: var(--max-width-content);
+  margin-inline: auto;
+}
+
+.pilares__card {
+  background-color: var(--color-white);
+  border: 1px solid #e8e5e0;
+  border-radius: var(--radius);
+  padding: var(--space-32);
+}
+
+.pilares__icon {
+  display: block;
+  margin-bottom: var(--space-16);
+}
+
+.pilares__icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--color-accent);
+}
+
+.pilares__card-title {
+  margin: 0 0 12px 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.pilares__card-desc {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 800px) {
+  .pilares {
+    padding: var(--space-64) var(--space-16);
+  }
+
+  .pilares__grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<section class="pilares">
+  <div class="pilares__header">
+    <h2 class="pilares__title">{title}</h2>
+    <p class="pilares__subtitle">{subtitle}</p>
+  </div>
+  <div class="pilares__grid">
+    {items.map((item) => (
+      <div class="pilares__card">
+        <span class="pilares__icon">
+          <svg aria-hidden="true">
+            <use href={item.icon}></use>
+          </svg>
+        </span>
+        <h3 class="pilares__card-title">{item.title}</h3>
+        <p class="pilares__card-desc">{item.description}</p>
+      </div>
+    ))}
+  </div>
+</section>

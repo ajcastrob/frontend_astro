@@ -1,5 +1,5 @@
 ---
-const { isHome, isSkills } = Astro.props
+const { isHome, isSkills, isAbout } = Astro.props
 ---
 <style>
 .header__menu{
@@ -54,6 +54,11 @@ const { isHome, isSkills } = Astro.props
     <li>
       <a class="header__link" href="/skills/" aria-current={isSkills ? "page" : undefined}>
         Skills
+      </a>
+    </li>
+    <li>
+      <a class="header__link" href="/about/" aria-current={isAbout? "page" : undefined}>
+        Sobre el laboratorio 
       </a>
     </li>
   </ul>
