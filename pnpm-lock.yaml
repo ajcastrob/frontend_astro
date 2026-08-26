@@ -18,6 +18,9 @@ importers:
       oxlint:
         specifier: ^1.80.0
         version: 1.80.0
+      oxlint-plugin-complexity:
+        specifier: ^2.1.7
+        version: 2.1.7(diff@8.0.4)
       vite-plugin-supersvg:
         specifier: ^0.0.7
         version: 0.0.7
@@ -777,6 +780,10 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
+
+  '@oxlint/plugins@1.80.0':
+    resolution: {integrity: sha512-QRgH1XqQEYNHa4f1vvPQ5fAdNdncHGIUG1ZWLlGIZHky3qwCEeAKYitZNbZMtaXtAQAAFFTOwqUfzESvimqZNA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
   '@resvg/resvg-js-android-arm-eabi@2.6.2':
     resolution: {integrity: sha512-FrJibrAk6v29eabIPgcTUMPXiEz8ssrAk7TXxsiZzww9UTQ1Z5KAbFJs+Z0Ez+VZTYgnE5IQJqBcoSiMebtPHA==}
@@ -1626,6 +1633,21 @@ packages:
       svelte:
         optional: true
       vite-plus:
+        optional: true
+
+  oxlint-plugin-complexity@2.1.7:
+    resolution: {integrity: sha512-q3WvEQjVx8Y6kszPoJsiMpGG+hqo8yZQ8XiY5l/LuKCHYUeLoFbhauKfC1FFyL6x3Knyi9JarA0u7AvCUfSmJQ==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      diff: '>=5.0.0'
+      estree-walker: '>=3.0.0'
+      oxc-parser: '>=0.60.0'
+    peerDependenciesMeta:
+      diff:
+        optional: true
+      estree-walker:
+        optional: true
+      oxc-parser:
         optional: true
 
   oxlint@1.80.0:
@@ -2578,6 +2600,8 @@ snapshots:
   '@oxlint/binding-win32-x64-msvc@1.80.0':
     optional: true
 
+  '@oxlint/plugins@1.80.0': {}
+
   '@resvg/resvg-js-android-arm-eabi@2.6.2':
     optional: true
 
@@ -3425,6 +3449,12 @@ snapshots:
       '@oxfmt/binding-win32-arm64-msvc': 0.65.0
       '@oxfmt/binding-win32-ia32-msvc': 0.65.0
       '@oxfmt/binding-win32-x64-msvc': 0.65.0
+
+  oxlint-plugin-complexity@2.1.7(diff@8.0.4):
+    dependencies:
+      '@oxlint/plugins': 1.80.0
+    optionalDependencies:
+      diff: 8.0.4
 
   oxlint@1.80.0:
     optionalDependencies:

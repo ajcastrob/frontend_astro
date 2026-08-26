@@ -5,6 +5,16 @@
     "correctness": "error"
   },
   "ignorePatterns": ["dist"],
+  "jsPlugins": ["oxlint-plugin-complexity"],
+  "rules": {
+    "complexity/complexity": [
+      "warn",
+      {
+        "cyclomatic": 10,
+        "cognitive": 10
+      }
+    ]
+  },
   "env": {
     "builtin": true,
     "browser": true
