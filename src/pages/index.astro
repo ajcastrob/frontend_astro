@@ -8,7 +8,7 @@ import Newsletter from "@/components/newsletter/Newsletter.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = await getBlogPost();
-const latest = (posts ?? []).slice(0, 3)
+const latest = (posts ?? []).slice(0, 3);
 ---
 <style>
 .skills {

@@ -5,6 +5,7 @@ import Search from "@/components/search/Search.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = (await getBlogPost()) ?? []
+const allTags = [...new Set(posts.flatMap(post => post.tags || []))];
 ---
 <style>
 .skills {
@@ -35,10 +36,9 @@ const posts = (await getBlogPost()) ?? []
   overflow-wrap: break-word;
 }
 
-.skills_search-container{
-  display: flex; 
-  justify-content: center;
+.skills__search {
   width: 100%;
+  min-width: 0;
 }
 
 @media (max-width: 800px) {
@@ -53,8 +53,8 @@ const posts = (await getBlogPost()) ?? []
       <p class="skills__lead">Un archivo de ideas, técnicas y reflexiones sobre la intersección entre la curiosidad humana y la capacidad de la IA.</p>
     </header>
     
-    <div class="skills_search-container">
-      <Search />
+    <div class="skills__search">
+      <Search tags={ allTags } />
     </div>
 
     <Posts posts={ posts } imageUrl={ imageUrl } />
