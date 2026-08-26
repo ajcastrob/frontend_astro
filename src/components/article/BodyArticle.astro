@@ -4,23 +4,33 @@ const { post } = Astro.props
 
 <style>
 .article-body {
+  max-width: none;
+}
+.article-body :global(p),
+.article-body :global(h2) {
   max-width: 65ch;
 }
-.article-body p {
-  font-family: var(--font-display);
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--color-text-primary);
-  text-wrap: pretty;
+.article-body :global(iframe) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-surface-muted);
 }
-.article-body h2 {
-  font-family: var(--font-ui);
-  font-size: var(--font-size-h2);
-  font-weight: 600;
-  color: var(--color-text-primary);
-  text-wrap: balance;
+.article-body :global(div:has(> iframe)) {
+  width: 100%;
+  margin: var(--space-32) 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+@media (max-width: 800px) {
+  .article-body :global(div:has(> iframe)) {
+    margin-block: var(--space-16);
+  }
 }
 </style>
-
 
 {post.body && <div class="article-body" set:html={post.body} />}
