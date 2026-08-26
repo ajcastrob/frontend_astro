@@ -5,6 +5,7 @@ import Hero from "@/components/hero/Hero.astro"
 import Posts from "@/components/posts/Posts.astro"
 import WhySection from "@/components/section/WhySection.astro"
 import Newsletter from "@/components/newsletter/Newsletter.astro"
+import YoutubeSection from "@/components/section/YoutubeSection.astro"
 import { getBlogPost, imageUrl } from "@/lib/wagtail.js"
 
 const posts = await getBlogPost();
@@ -51,6 +52,7 @@ const latest = (posts ?? []).slice(0, 3);
       <hr class="skills__rule" />
     </div>
     <Posts posts={ latest } imageUrl={ imageUrl } featured />
+    <YoutubeSection />
     <PurposeSection />
     <WhySection />
     <Newsletter />
