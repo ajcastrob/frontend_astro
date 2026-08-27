@@ -17,19 +17,17 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href, featured = f
   border-radius: var(--radius);
   transition:
     border-color var(--duration) var(--ease-out),
-    transform var(--duration) var(--ease-out);
+    transform var(--duration) var(--ease-out); 
+  &:hover {
+    border-color: var(--color-accent);
+  }
+  &::hover :global(.card__img) {
+    transform: scale(1.03);
+  }
+  &:hover :global(.card__leer-icon) {
+    transform: translateX(4px);
+  }
 }
-
-.card:hover {
-  border-color: var(--color-accent);
-}
-.card:hover :global(.card__img) {
-  transform: scale(1.03);
-}
-.card:hover :global(.card__leer-icon) {
-  transform: translateX(4px);
-}
-
 .card[hidden] {
   display: none;
 }
