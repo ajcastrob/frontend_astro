@@ -25,9 +25,19 @@ const { post } = Astro.props
   margin: var(--space-32) 0;
   overflow: hidden;
   border-radius: var(--radius);
+  @media (max-width: 800px) {
+    margin-block: var(--space-16);
+  }
 }
-@media (max-width: 800px) {
-  .article-body :global(div:has(> iframe)) {
+
+.article-body :global(img) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: var(--space-32) 0;
+  border-radius: var(--radius);
+  @media (max-width: 800px) {
     margin-block: var(--space-16);
   }
 }

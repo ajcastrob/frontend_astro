@@ -19,11 +19,8 @@ const { post, authorName, avatar, author  } = Astro.props
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
   overflow-wrap: break-word;
-}
-
-@media (min-width: 801px) {
-  .article__title {
-    text-wrap: balance;
+  @media (min-width: 801px) {
+      text-wrap: balance;
   }
 }
 </style>
