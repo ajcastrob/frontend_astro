@@ -21,13 +21,21 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href, featured = f
   &:hover {
     border-color: var(--color-accent);
   }
-  &:hover :global(.card__img) {
-    transform: scale(1.03);
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+     transform: translateY(-2px);
+    }
+    &:active {
+     transform: scale(0.98);
+    }
+    &:hover :global(.card__img) {
+       transform: scale(1.03);
+    }
+     &:hover :global(.card__leer-icon) {
+       transform: translateX(4px);
+    }
+   }
   }
-  &:hover :global(.card__leer-icon) {
-    transform: translateX(4px);
-  }
-}
 .card[hidden] {
   display: none;
 }
@@ -35,15 +43,6 @@ const { title, intro, imageSrc = "", imageAlt= "", tags = [], href, featured = f
   font-family: var(--font-display);
   font-size: var(--font-size-h2);
   font-weight: 500;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .card:hover {
-    transform: translateY(-2px);
-  }
-  .card:active {
-    transform: scale(0.98);
-  }
 }
 </style>
 
