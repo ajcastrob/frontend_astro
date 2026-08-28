@@ -41,6 +41,29 @@ const allTags = [...new Set(posts.flatMap(post => post.tags || []))].slice(0,10)
   min-width: 0;
 }
 
+.pager {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-16);
+  margin-top: var(--space-64);
+}
+.pager[hidden] {
+  display: none;
+}
+.pager button {
+  font: inherit;
+  padding: var(--space-8) var(--space-16);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.pager button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 @media (max-width: 800px) {
   .skills { padding-inline: var(--space-16); }
 }
@@ -58,6 +81,12 @@ const allTags = [...new Set(posts.flatMap(post => post.tags || []))].slice(0,10)
     </div>
 
     <Posts posts={ posts } imageUrl={ imageUrl } />
+
+
+    <nav class="pager" id="search-pager" aria-label="Paginación">
+      <button type="button" id="pager-prev">Anterior</button>
+      <button type="button" id="pager-next">Siguiente</button>
+    </nav>
 
   </section>
 </BasicLayout>

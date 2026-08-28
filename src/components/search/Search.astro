@@ -234,6 +234,11 @@ const { tags = [] } = Astro.props;
   const chips = document.querySelector(".search__chips")
   const status = document.querySelector("#search-status")
   const empty = document.querySelector("#search-empty")
+  const pager = document.querySelector("#search-pager")
+  const prev = document.querySelector("#pager-prev")
+  const next = document.querySelector("#pager-next")
+  const PAGE_SIZE = 6
+  let page = 0
 
   function selectedTag() {
     const checked = document.querySelector("input[name='tag-article']:checked")
@@ -243,33 +248,68 @@ const { tags = [] } = Astro.props;
   function applyFilters() {
     const q = input.value.trim().toLowerCase()
     const selectTag = selectedTag()
-    let visible = 0
+    const matches = []
 
-    cards.forEach((card) => {
+    cards.forEach( (card) => {
       const title = card.querySelector(".card__title").textContent.toLowerCase()
-      const tags = [...card.querySelectorAll(".card__tag")].map((el) =>
+      const tags = [...card.querySelectorAll(".card__tag")].map((el) => 
         el.textContent.toLowerCase()
       )
       const matchTitle = q === "" || title.includes(q)
       const matchTag = selectTag === "" || tags.some((t) => t.includes(selectTag))
-      const show = matchTitle && matchTag
-      card.hidden = !show
-      if (show) visible += 1
+      if (matchTitle && matchTag) {
+        matches.push(card)
+      }
     })
 
-    const filtering = q !== "" || selectTag !== ""
+    const totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE))
+    if (page > totalPages - 1) {
+      page = totalPages - 1
+    }
 
-    if (visible === 0) {
+    cards.forEach((card) => {
+      card.hidden = true
+    })
+
+    const start = page * PAGE_SIZE
+    matches.slice(start, start + PAGE_SIZE).forEach((card) => {
+      card.hidden = false
+    })
+
+    if (matches.length === 0) {
       status.hidden = true
       status.textContent = ""
       empty.hidden = false
     } else {
       empty.hidden = true
-      status.hidden = !filtering
-      status.textContent = visible === 1 ? "1 artículo" : `${visible} artículos`
+      status.hidden = false
+      const from = start + 1
+      const to = start + Math.min(PAGE_SIZE, matches.length - start)
+      status.textContent = `${from}-${to} de ${matches.length} páginas`
     }
+ 
+    pager.hidden = matches.length <= PAGE_SIZE
+    prev.disabled = page === 0
+    next.disabled = page >= totalPages - 1
   }
 
-  input.addEventListener("input", applyFilters)
-  chips.addEventListener("change", applyFilters)
+
+  // Listeners
+  input.addEventListener("input", () => {
+    page = 0
+    applyFilters()
+  })
+  chips.addEventListener("change", () => {
+    page = 0
+    applyFilters()
+  })
+  prev.addEventListener("click", () => {
+    page -= 1
+    applyFilters()
+  })
+  next.addEventListener("click", () => {
+    page += 1
+    applyFilters()
+  })
+  applyFilters()  
 </script>
