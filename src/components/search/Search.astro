@@ -245,9 +245,7 @@ const { tags = [] } = Astro.props;
     return (checked?.value ?? "").trim().toLowerCase()
   }
 
-  function applyFilters() {
-    const q = input.value.trim().toLowerCase()
-    const selectTag = selectedTag()
+  function getMatchesCard(q, selectTag) {
     const matches = []
 
     cards.forEach( (card) => {
@@ -261,15 +259,19 @@ const { tags = [] } = Astro.props;
         matches.push(card)
       }
     })
+    return matches
+  }
 
+
+  function getTotalPages(matches) {
     const totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE))
     if (page > totalPages - 1) {
       page = totalPages - 1
     }
+    return totalPages
+  }
 
-    cards.forEach((card) => {
-      card.hidden = true
-    })
+  function chageStatusPagination(matches, PAGE_SIZE, page, totalPages) {
 
     const start = page * PAGE_SIZE
     matches.slice(start, start + PAGE_SIZE).forEach((card) => {
@@ -285,12 +287,23 @@ const { tags = [] } = Astro.props;
       status.hidden = false
       const from = start + 1
       const to = start + Math.min(PAGE_SIZE, matches.length - start)
-      status.textContent = `${from}-${to} de ${matches.length} páginas`
+      status.textContent = `${from}-${to} de ${matches.length} artículos`
     }
- 
     pager.hidden = matches.length <= PAGE_SIZE
     prev.disabled = page === 0
     next.disabled = page >= totalPages - 1
+  }
+
+  function applyFilters() {
+    const q = input.value.trim().toLowerCase()
+    const selectTag = selectedTag()
+    const matches = getMatchesCard(q, selectTag)  
+    const totalPages = getTotalPages(matches)
+    
+    cards.forEach((card) => {
+      card.hidden = true
+    }) 
+    chageStatusPagination(matches, PAGE_SIZE, page, totalPages)
   }
 
 
