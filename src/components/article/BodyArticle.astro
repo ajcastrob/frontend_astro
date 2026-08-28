@@ -1,15 +1,111 @@
 ---
 const { post } = Astro.props
 ---
-
 <style>
 .article-body {
   max-width: none;
+  color: var(--color-text-primary);
+  font-size: 1.125rem;
+  line-height: 1.7;
 }
+
 .article-body :global(p),
-.article-body :global(h2) {
+.article-body :global(h2),
+.article-body :global(h3),
+.article-body :global(ul),
+.article-body :global(ol) {
   max-width: 65ch;
 }
+
+.article-body :global(p) {
+  margin: 0 0 1.25em;
+}
+
+.article-body :global(p:empty) {
+  display: none;
+}
+
+.article-body :global(h2),
+.article-body :global(h3) {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  overflow-wrap: break-word;
+}
+
+.article-body :global(h2) {
+  margin: 56px 0 var(--space-16);
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.article-body :global(h3) {
+  margin: var(--space-32) 0 var(--space-16);
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.article-body :global(ul),
+.article-body :global(ol) {
+  margin: 0 0 1.25em;
+  padding-left: 1.2em;
+}
+
+.article-body :global(li) {
+  margin: 0.4em 0;
+}
+
+.article-body :global(li::marker) {
+  color: var(--color-text-tertiary);
+}
+
+.article-body :global(a) {
+  color: var(--color-accent);
+  text-underline-offset: 3px;
+}
+
+.article-body :global(a:hover) {
+  color: var(--color-text-primary);
+}
+
+.article-body :global(b),
+.article-body :global(strong) {
+  font-weight: 600;
+}
+
+.article-body :global(i),
+.article-body :global(em) {
+  font-style: italic;
+}
+
+.article-body :global(code) {
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+  background: var(--color-surface-muted);
+  border-radius: var(--radius);
+}
+
+.article-body :global(pre) {
+  margin: var(--space-32) 0;
+  padding: var(--space-16);
+  overflow-x: auto;
+  background: var(--color-surface-muted);
+  border-radius: var(--radius);
+}
+
+.article-body :global(pre code) {
+  padding: 0;
+  background: none;
+}
+
+.article-body :global(blockquote) {
+  margin: var(--space-32) 0;
+  padding: 0 0 0 var(--space-16);
+  color: var(--color-text-secondary);
+  border-left: 2px solid var(--color-accent);
+}
+
 .article-body :global(iframe) {
   display: block;
   width: 100%;
@@ -17,17 +113,15 @@ const { post } = Astro.props
   height: auto;
   aspect-ratio: 16 / 9;
   border: 0;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   background: var(--color-surface-muted);
 }
+
 .article-body :global(div:has(> iframe)) {
   width: 100%;
   margin: var(--space-32) 0;
   overflow: hidden;
-  border-radius: var(--radius);
-  @media (max-width: 800px) {
-    margin-block: var(--space-16);
-  }
+  border-radius: var(--radius-lg);
 }
 
 .article-body :global(img) {
@@ -36,8 +130,21 @@ const { post } = Astro.props
   max-width: 100%;
   height: auto;
   margin: var(--space-32) 0;
-  border-radius: var(--radius);
-  @media (max-width: 800px) {
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 800px) {
+  .article-body {
+    font-size: 1.0625rem;
+  }
+
+  .article-body :global(h2) {
+    margin-top: var(--space-32);
+    font-size: 1.5rem;
+  }
+
+  .article-body :global(img),
+  .article-body :global(div:has(> iframe)) {
     margin-block: var(--space-16);
   }
 }

@@ -4,32 +4,70 @@ import TagsArticle from "@/components/article/header_article/TagsArticle.astro"
 import AuthorArticle from "@/components/article/header_article/AuthorArticle.astro"
 import IntroArticle from "@/components/article/header_article/IntroArticle.astro"
 
-const { post, authorName, avatar, author  } = Astro.props
+const { post, authorName, avatar, author } = Astro.props
 ---
 <style>
 .article__header {
-  margin-bottom: var(--space-64);
+  margin-bottom: var(--space-32);
 }
+
+.article__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0 0 var(--space-32);
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  transition: color var(--duration) var(--ease-out);
+}
+
+.article__back:hover,
+.article__back:focus-visible {
+  color: var(--color-accent);
+}
+
 .article__title {
   margin: 0 0 var(--space-24);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(2.25rem, 4.4vw, 3.5rem);
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
   overflow-wrap: break-word;
-  @media (min-width: 801px) {
-      text-wrap: balance;
+}
+
+.article__rule {
+  width: 40px;
+  height: var(--border-width);
+  margin: 0 0 var(--space-24);
+  border: 0;
+  background: var(--color-border);
+}
+
+.article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: var(--space-24);
+}
+
+@media (min-width: 801px) {
+  .article__title {
+    text-wrap: balance;
   }
 }
 </style>
 
 <header class="article__header">
-      <TagsArticle post={post} />
-      <h1 class="article__title">{post.title}</h1>
-      <IntroArticle post={post} /> 
-      <Date date={post.date}/>
-      <AuthorArticle author={ author } avatar={ avatar } authorName={ authorName } />
+  <a class="article__back" href="/skills/">← Volver</a>
+  <TagsArticle post={post} />
+  <h1 class="article__title">{post.title}</h1>
+  <hr class="article__rule" />
+  <IntroArticle post={post} />
+  <div class="article__meta">
+    <AuthorArticle author={author} avatar={avatar} authorName={authorName} />
+    <Date date={post.date} />
+  </div>
 </header>
-

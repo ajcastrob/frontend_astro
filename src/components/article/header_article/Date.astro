@@ -7,13 +7,15 @@ const { date } = Astro.props;
 .date {
   font-size: 14px;
   color: var(--color-text-tertiary);
-  margin-top: var(--space-16);
 }
+
 .date time {
   font-family: var(--font-ui);
 }
 </style>
 
-<div class="date">
-  {date && <time datetime={date}>{formatDate(date)}</time>}
-</div>
+{date && (
+  <div class="date">
+    <time datetime={date}>{formatDate(date)}</time>
+  </div>
+)}
