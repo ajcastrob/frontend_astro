@@ -5,37 +5,13 @@ const { posts, imageUrl, featured = false } = Astro.props
 ---
 <style>
 .skills__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-24);
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-}
-.skills__grid > :global(*) {
-  min-width: 0;
-}
-.skills__grid--featured {
-  grid-template-columns: 2fr 1fr 1fr;
-}
-.skills__grid--featured > :global(:only-child) {
-  grid-column: 1 / -1;
 }
 
-@media (max-width: 1100px) {
-  .skills__grid--featured {
-    grid-template-columns: 1fr 1fr;
-  }
-  .skills__grid--featured > :global(:first-child) {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 800px) {
-  .skills__grid,
-  .skills__grid--featured {
-    grid-template-columns: 1fr;
-  }
-  .skills__grid--featured > :global(:first-child) {
-    grid-column: auto;
-  }
+.skills__grid > :global(*) {
+  min-width: 0;
 }
 </style>
 
@@ -48,8 +24,8 @@ const { posts, imageUrl, featured = false } = Astro.props
       href={`/skills/${post.meta.slug}`}
       imageSrc={imageUrl(post.image)}
       imageAlt={post.image?.title ?? ""}
+      date={post.date || post.meta?.first_published_at}
       featured={featured && index === 0}
     />
   ))}
 </div>
-

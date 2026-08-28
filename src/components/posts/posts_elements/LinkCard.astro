@@ -1,26 +1,44 @@
 ---
-const { href } = Astro.props
+import { formatDate } from "@/lib/format.js"
+
+const { date, featured = false } = Astro.props
+const formatted = formatDate(date)
 ---
 <style>
+.card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: auto;
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+}
+
 .card__leer {
   display: inline-flex;
   align-items: center;
   gap: var(--space-4);
-  width: fit-content;
-  margin-top: auto;
-  color: var(--color-accent);
   font-weight: 500;
+  color: var(--color-accent);
 }
+
 .card__leer-icon {
   display: inline-block;
   transition: transform var(--duration) var(--ease-out);
 }
-.card__leer:hover .card__leer-icon {
-  transform: translateX(4px);
-}
 </style>
 
-<a class="card__leer" href={href}>
-  Leer
-  <span class="card__leer-icon" aria-hidden="true">→</span>
-</a>
+{(formatted || featured) && (
+  <div class="card__meta">
+    {formatted && (
+      <time datetime={date}>{formatted}</time>
+    )}
+    {featured && (
+      <span class="card__leer">
+        Leer
+        <span class="card__leer-icon" aria-hidden="true">→</span>
+      </span>
+    )}
+  </div>
+)}

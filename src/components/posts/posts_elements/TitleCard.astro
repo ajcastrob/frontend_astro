@@ -1,25 +1,18 @@
 ---
-const { href, title } = Astro.props
+const { title } = Astro.props
 ---
-
 <style>
 .card__title {
   margin: 0 0 var(--space-16);
-  font-size: 28px;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
   color: var(--color-text-primary);
   text-wrap: balance;
-  line-height: 1.2;
-}
-.card__title a {
+  overflow-wrap: break-word;
   transition: color var(--duration) var(--ease-out);
-}
-.card__title a:hover {
-  color: var(--color-accent);
 }
 </style>
 
-<h3 class="card__title">
-    <a href={href}>{title}</a>
-</h3>
-
+<h3 class="card__title">{title}</h3>

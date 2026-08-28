@@ -1,26 +1,46 @@
 ---
-const { imageSrc, imageAlt } = Astro.props
+const { imageSrc, imageAlt, variant = "row" } = Astro.props
 ---
 <style>
 .card__media {
   overflow: hidden;
-  border-radius: var(--radius);
-  margin-bottom: var(--space-16);
+  min-width: 0;
+  background: var(--color-surface-muted);
 }
+
+.card__media--lead {
+  border-radius: var(--radius-lg);
+}
+
+.card__media--row {
+  width: 160px;
+  border-radius: 16px;
+}
+
 .card__img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
   display: block;
+  width: 100%;
+  object-fit: cover;
   transition: transform var(--duration) var(--ease-out);
+}
+
+.card__media--lead .card__img {
+  aspect-ratio: 4 / 3;
+}
+
+.card__media--row .card__img {
+  aspect-ratio: 5 / 4;
+}
+
+@media (max-width: 800px) {
+  .card__media--row {
+    width: 96px;
+  }
 }
 </style>
 
 {imageSrc && (
-  <div class="card__media">
+  <div class:list={["card__media", `card__media--${variant}`]}>
     <img class="card__img" src={imageSrc} alt={imageAlt ?? ""} />
   </div>
 )}
-
-
-

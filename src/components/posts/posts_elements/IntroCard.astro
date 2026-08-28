@@ -1,12 +1,24 @@
 ---
-const { intro } = Astro.props
+const { intro, compact = false } = Astro.props
 ---
 <style>
 .card__intro {
-  margin: 0 0 var(--space-32);
-  flex: 1;
+  margin: 0 0 var(--space-24);
+  max-width: 42rem;
   color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.card__intro--compact {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: var(--space-16);
 }
 </style>
 
-{intro && <p class="card__intro">{intro}</p>}
+{intro && (
+  <p class:list={["card__intro", compact && "card__intro--compact"]}>{intro}</p>
+)}
