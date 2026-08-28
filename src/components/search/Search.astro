@@ -230,47 +230,10 @@ const { tags = [] } = Astro.props;
 </div>
 
 <script>
-  import {
-    selectedTag,
-    getMatchesCard,
-    getTotalPages,
-    chageStatusPagination,
-    resetPage,
-    stepPage,
-  } from "@/lib/search.js"
+  import { EventControl } from "@/lib/search.js"
 
-  const input = document.querySelector("#search-title")
-  const chips = document.querySelector(".search__chips")
-  const prev = document.querySelector("#pager-prev")
-  const next = document.querySelector("#pager-next")
+  const eventControl = new EventControl()  
+  eventControl.init()
+  eventControl.applyFilters()
 
-  function applyFilters() {
-    const q = input.value.trim().toLowerCase()
-    const selectTag = selectedTag()
-    const matches = getMatchesCard(q, selectTag)
-    const totalPages = getTotalPages(matches)
-
-    document.querySelectorAll(".card").forEach((card) => {
-      card.hidden = true
-    })
-    chageStatusPagination(matches, totalPages)
-  }
-
-  input.addEventListener("input", () => {
-    resetPage()
-    applyFilters()
-  })
-  chips.addEventListener("change", () => {
-    resetPage()
-    applyFilters()
-  })
-  prev.addEventListener("click", () => {
-    stepPage(-1)
-    applyFilters()
-  })
-  next.addEventListener("click", () => {
-    stepPage(1)
-    applyFilters()
-  })
-  applyFilters()
 </script>
