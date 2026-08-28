@@ -43,12 +43,12 @@ export class EventControl {
     this.changeStatusPagination(matches, totalPages);
   }
 
-  selectedTag = () => {
+  selectedTag() {
     const checked = document.querySelector("input[name='tag-article']:checked");
     return (checked?.value ?? "").trim().toLowerCase();
-  };
+  }
 
-  getMatchesCard = (q, selectTag) => {
+  getMatchesCard(q, selectTag) {
     const matches = [];
 
     this.cards.forEach((card) => {
@@ -66,17 +66,17 @@ export class EventControl {
       }
     });
     return matches;
-  };
+  }
 
-  getTotalPages = (matches) => {
+  getTotalPages(matches) {
     const totalPages = Math.max(1, Math.ceil(matches.length / this.PAGE_SIZE));
     if (this.page > totalPages - 1) {
       this.page = totalPages - 1;
     }
     return totalPages;
-  };
+  }
 
-  changeStatusPagination = (matches, totalPages) => {
+  changeStatusPagination(matches, totalPages) {
     const start = this.page * this.PAGE_SIZE;
 
     matches.slice(start, start + this.PAGE_SIZE).forEach((card) => {
@@ -98,13 +98,13 @@ export class EventControl {
     this.pager.hidden = matches.length <= this.PAGE_SIZE;
     this.prev.disabled = this.page === 0;
     this.next.disabled = this.page >= totalPages - 1;
-  };
+  }
 
-  resetPage = () => {
+  resetPage() {
     this.page = 0;
-  };
+  }
 
-  stepPage = (delta) => {
+  stepPage(delta) {
     this.page += delta;
-  };
+  }
 }
