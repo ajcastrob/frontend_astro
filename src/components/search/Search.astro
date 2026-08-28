@@ -1,6 +1,7 @@
 ---
 const searchIcon = "/assets/icons/section.svg#search";
 const { tags = [] } = Astro.props;
+
 ---
 <style>
 .search {
@@ -229,100 +230,47 @@ const { tags = [] } = Astro.props;
 </div>
 
 <script>
+  import {
+    selectedTag,
+    getMatchesCard,
+    getTotalPages,
+    chageStatusPagination,
+    resetPage,
+    stepPage,
+  } from "@/lib/search.js"
+
   const input = document.querySelector("#search-title")
-  const cards = document.querySelectorAll(".card")
   const chips = document.querySelector(".search__chips")
-  const status = document.querySelector("#search-status")
-  const empty = document.querySelector("#search-empty")
-  const pager = document.querySelector("#search-pager")
   const prev = document.querySelector("#pager-prev")
   const next = document.querySelector("#pager-next")
-  const PAGE_SIZE = 6
-  let page = 0
-
-  function selectedTag() {
-    const checked = document.querySelector("input[name='tag-article']:checked")
-    return (checked?.value ?? "").trim().toLowerCase()
-  }
-
-  function getMatchesCard(q, selectTag) {
-    const matches = []
-
-    cards.forEach( (card) => {
-      const title = card.querySelector(".card__title").textContent.toLowerCase()
-      const tags = [...card.querySelectorAll(".card__tag")].map((el) => 
-        el.textContent.toLowerCase()
-      )
-      const matchTitle = q === "" || title.includes(q)
-      const matchTag = selectTag === "" || tags.some((t) => t.includes(selectTag))
-      if (matchTitle && matchTag) {
-        matches.push(card)
-      }
-    })
-    return matches
-  }
-
-
-  function getTotalPages(matches) {
-    const totalPages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE))
-    if (page > totalPages - 1) {
-      page = totalPages - 1
-    }
-    return totalPages
-  }
-
-  function chageStatusPagination(matches, PAGE_SIZE, page, totalPages) {
-
-    const start = page * PAGE_SIZE
-    matches.slice(start, start + PAGE_SIZE).forEach((card) => {
-      card.hidden = false
-    })
-
-    if (matches.length === 0) {
-      status.hidden = true
-      status.textContent = ""
-      empty.hidden = false
-    } else {
-      empty.hidden = true
-      status.hidden = false
-      const from = start + 1
-      const to = start + Math.min(PAGE_SIZE, matches.length - start)
-      status.textContent = `${from}-${to} de ${matches.length} artículos`
-    }
-    pager.hidden = matches.length <= PAGE_SIZE
-    prev.disabled = page === 0
-    next.disabled = page >= totalPages - 1
-  }
 
   function applyFilters() {
     const q = input.value.trim().toLowerCase()
     const selectTag = selectedTag()
-    const matches = getMatchesCard(q, selectTag)  
+    const matches = getMatchesCard(q, selectTag)
     const totalPages = getTotalPages(matches)
-    
-    cards.forEach((card) => {
+
+    document.querySelectorAll(".card").forEach((card) => {
       card.hidden = true
-    }) 
-    chageStatusPagination(matches, PAGE_SIZE, page, totalPages)
+    })
+    chageStatusPagination(matches, totalPages)
   }
 
-
-  // Listeners
   input.addEventListener("input", () => {
-    page = 0
+    resetPage()
     applyFilters()
   })
   chips.addEventListener("change", () => {
-    page = 0
+    resetPage()
     applyFilters()
   })
   prev.addEventListener("click", () => {
-    page -= 1
+    stepPage(-1)
     applyFilters()
   })
   next.addEventListener("click", () => {
-    page += 1
+    stepPage(1)
     applyFilters()
   })
-  applyFilters()  
+  applyFilters()
 </script>
