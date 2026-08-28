@@ -7,6 +7,7 @@
   --color-border: #ddc1b3;
   --color-surface: #faf9f8;
   --color-surface-muted: #f4f3f2;
+  --color-surface-warm: #f4f0ea;
   --color-accent: #903f00;
 
   /* spaces */
@@ -24,6 +25,8 @@
 
   /* radius */
   --radius: 4px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
   --border-width: 1px;
 
   /* type */

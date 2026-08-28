@@ -1,76 +1,63 @@
 ---
-import HeroImage from "@/components/hero/HeroImage.astro"
 ---
-
 <style>
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: center;
-  gap: var(--space-64);
-  width: 100%;
-  max-width: min(var(--max-width-content), 100%);
-  margin-inline: auto;
-  padding: var(--space-64);
-  min-width: 0;
-}
-
-.hero > :global(*) {
-  min-width: 0;
-  max-width: 100%;
-}
-
-.hero__copy {
   display: flex;
   flex-direction: column;
-  max-width: 32rem;
-  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16);
+  width: auto;
+  min-height: 400px;
+  margin-inline: var(--space-16);
+  margin-top: calc(-1 * (var(--space-16) + 56px));
+  margin-bottom: var(--space-64);
+  padding: 108px var(--space-64) 48px;
+  overflow: clip;
+  text-align: center;
+  background: var(--color-surface-warm);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.hero__eyebrow {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
 }
 
 .hero__title {
-  margin: 0 0 var(--space-16);
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
   font-family: var(--font-display);
-  font-size: var(--font-size-h1);
+  font-size: 56px;
   font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  line-height: 64px;
+  letter-spacing: -1.1px;
   color: var(--color-text-primary);
-  overflow-wrap: break-word;
 }
 
 .hero__title em {
+  padding-bottom: 4px;
   font-style: italic;
-  font-weight: inherit;
+  font-weight: 500;
+  line-height: 1.15;
   color: var(--color-accent);
 }
 
-.hero__lead {
-  margin: 0;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  font-size: var(--font-size-subtitle);
-  line-height: 1.7;
-  color: var(--color-text-secondary);
-  overflow-wrap: break-word;
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .hero :global(.hero__media),
-  .hero__title,
-  .hero__lead {
+  .hero__eyebrow,
+  .hero__title {
     animation: hero-in 720ms var(--ease-out) both;
   }
 
   .hero__title {
     animation-delay: 90ms;
-  }
-
-  .hero__lead {
-    animation-delay: 180ms;
   }
 }
 
@@ -86,39 +73,31 @@ import HeroImage from "@/components/hero/HeroImage.astro"
 }
 
 @media (min-width: 801px) {
-  .hero__title {
-    text-wrap: balance;
+  .hero__title span,
+  .hero__title em {
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 800px) {
   .hero {
-    grid-template-columns: 1fr;
-    gap: var(--space-32);
-    padding: var(--space-64) var(--space-16);
-  }
-
-  .hero__copy {
-    max-width: 100%;
+    min-height: 0;
+    margin-inline: var(--space-16);
+    padding: 96px var(--space-16) var(--space-32);
   }
 
   .hero__title {
     font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 }
 </style>
 
 <section class="hero">
-  <div class="hero__copy">
-    <h1 class="hero__title">
-      Dominando skills de IA: 
-      <div>
-          Del prompt a la <em>automatización</em>
-      </div>
-    </h1>
-    <p class="hero__lead">
-      Un espacio para explorar herramientas de IA. Sin mucha prisa, a pasos con el desarrollo.
-    </p>
-  </div>
-  <HeroImage />
+  <p class="hero__eyebrow">El blog de Ashi Labs</p>
+  <h1 class="hero__title">
+    <span>Dominando skills de IA</span>
+    <em>Del prompt a la automatización</em>
+  </h1>
 </section>
