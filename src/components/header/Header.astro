@@ -22,6 +22,7 @@ const nameBrand = "Ashi Labs"
 }
 
 .header__shell {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -32,7 +33,7 @@ const nameBrand = "Ashi Labs"
   padding: 0 var(--space-8) 0 var(--space-16);
   background: var(--color-white);
   border: var(--border-width) solid var(--color-border);
-  border-radius: 28px;
+  border-radius: var(--radius-lg);
 }
 
 .header__end {
@@ -112,18 +113,21 @@ const nameBrand = "Ashi Labs"
 
   .header__shell {
     grid-template-columns: 1fr auto;
-    grid-template-rows: 56px auto;
+  }
+
+  .header[data-nav-open] .header__shell {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
   }
 
   .header__shell :global(.header__brand) {
     grid-column: 1;
-    grid-row: 1;
     min-width: 0;
   }
 
   .header__end {
     grid-column: 2;
-    grid-row: 1;
   }
 
   .header__toggle {
@@ -132,10 +136,16 @@ const nameBrand = "Ashi Labs"
 
   .header__shell :global(.header__nav) {
     display: none;
-    grid-column: 1 / -1;
-    grid-row: 2;
-    align-self: start;
-    padding: 0 var(--space-8) var(--space-16);
+    position: absolute;
+    top: 100%;
+    left: calc(-1 * var(--border-width));
+    right: calc(-1 * var(--border-width));
+    z-index: 1;
+    padding: var(--space-8) var(--space-8) var(--space-16);
+    background: var(--color-white);
+    border: var(--border-width) solid var(--color-border);
+    border-top: 0;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   }
 
   .header__shell :global(.header__nav[data-open]) {
@@ -180,6 +190,7 @@ const nameBrand = "Ashi Labs"
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
       nav.toggleAttribute("data-open", open);
+      header?.toggleAttribute("data-nav-open", open);
     };
 
     toggle.addEventListener("click", () => {
